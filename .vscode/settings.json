@@ -1,0 +1,22 @@
+{
+    "editor.wordWrapColumn": 125,
+    "dart.lineLength": 125,
+    "editor.rulers": [
+        125
+    ],
+    "git.mergeEditor": true,
+    "dart.runPubGetOnPubspecChanges": "never",
+    "files.exclude": {
+        "**/.dart_tool": true,
+        "**/.idea": true,
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+    },
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": false,
+    "explorer.fileNesting.patterns": {
+        "pubspec.yaml": "pubspec.lock,pubspec_overrides.yaml,.packages,.flutter-plugins,.flutter-plugins-dependencies,.metadata, *.iml,.gitignore,analysis_options.yaml,build.yaml,.cursorignore",
+        "*.dart": "${capture}.g.dart, ${capture}.gr.dart"
+    }
+}
