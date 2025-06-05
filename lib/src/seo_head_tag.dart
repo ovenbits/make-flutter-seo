@@ -1,10 +1,13 @@
-// 🎯 Dart imports:
-import 'dart:convert';
+part of 'seo_tag.dart';
 
-// 🌎 Project imports:
-import 'package:make_flutter_seo/src/seo_tag.dart';
+extension type const SeoHeadTagType(String _) implements String {
+  static const SeoHeadTagType meta = SeoHeadTagType('meta');
+  static const SeoHeadTagType link = SeoHeadTagType('link');
+}
 
-abstract class SeoHeadTag {
+sealed class SeoHeadTag implements SeoTag {
+  SeoHeadTagType get tagType;
+
   const SeoHeadTag();
 
   String encode();
@@ -20,9 +23,9 @@ abstract class SeoHeadTag {
       }
 
       switch (type) {
-        case 'MetaTag':
+        case SeoHeadTagType.meta:
           return SeoMetaTag(name: properties['name'], httpEquiv: properties['httpEquiv'], content: properties['content']);
-        case 'LinkTag':
+        case SeoHeadTagType.link:
           return SeoLinkTag(
             title: properties['title'],
             rel: properties['rel'],
@@ -40,7 +43,10 @@ abstract class SeoHeadTag {
   }
 }
 
-class SeoMetaTag extends SeoHeadTag {
+class SeoMetaTag implements SeoHeadTag {
+  @override
+  SeoHeadTagType get tagType => SeoHeadTagType.meta;
+
   final String? name;
   final String? httpEquiv;
   final String? content;
@@ -49,7 +55,7 @@ class SeoMetaTag extends SeoHeadTag {
 
   @override
   String encode() {
-    final Map<String, dynamic> json = {'type': 'MetaTag', 'properties': <String, dynamic>{}};
+    final Map<String, dynamic> json = {'type': tagType, 'properties': <String, dynamic>{}};
 
     // Only include non-null properties for cleaner output
     if (name != null) json['properties']['name'] = name;
@@ -60,7 +66,10 @@ class SeoMetaTag extends SeoHeadTag {
   }
 }
 
-class SeoLinkTag extends SeoHeadTag {
+class SeoLinkTag implements SeoHeadTag {
+  @override
+  SeoHeadTagType get tagType => SeoHeadTagType.link;
+
   final String? title;
   final String? rel;
   final String? type;
@@ -72,7 +81,7 @@ class SeoLinkTag extends SeoHeadTag {
 
   @override
   String encode() {
-    final Map<String, dynamic> json = {'type': 'LinkTag', 'properties': <String, dynamic>{}};
+    final Map<String, dynamic> json = {'type': tagType, 'properties': <String, dynamic>{}};
 
     // Only include non-null properties for cleaner output
     if (title != null) json['properties']['title'] = title;
@@ -86,7 +95,8 @@ class SeoLinkTag extends SeoHeadTag {
   }
 }
 
-class HeadTags extends SeoTag {
+//TODO: Remove this class
+class HeadTags implements SeoTag {
   final List<SeoHeadTag> tags;
 
   const HeadTags({required this.tags});

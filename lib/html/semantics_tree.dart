@@ -7,8 +7,6 @@ import 'package:flutter/rendering.dart';
 
 // 🌎 Project imports:
 import 'package:make_flutter_seo/html/seo_semantics.dart';
-import 'package:make_flutter_seo/src/seo_body_tag.dart';
-import 'package:make_flutter_seo/src/seo_head_tag.dart';
 import 'package:make_flutter_seo/src/seo_html.dart';
 import 'package:make_flutter_seo/src/seo_tag.dart';
 import 'package:make_flutter_seo/src/seo_tree.dart';

@@ -2,8 +2,6 @@
 import 'package:flutter/material.dart';
 
 // 🌎 Project imports:
-import 'package:make_flutter_seo/src/seo_body_tag.dart';
-import 'package:make_flutter_seo/src/seo_head_tag.dart';
 import 'package:make_flutter_seo/src/seo_html.dart';
 import 'package:make_flutter_seo/src/seo_tag.dart';
 

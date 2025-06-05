@@ -1,12 +1,10 @@
-// 🎯 Dart imports:
-import 'dart:math';
-
 // 🐦 Flutter imports:
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 // 🌎 Project imports:
-import 'package:make_flutter_seo/src/seo_head_tag.dart';
+import 'package:make_flutter_seo/src/seo_tag.dart';
+import 'package:uuid/uuid.dart';
 
 /// Collection of custom [SemanticsTag]s used by the SEO layer.
 ///
@@ -16,15 +14,9 @@ import 'package:make_flutter_seo/src/seo_head_tag.dart';
 ///
 /// Because they are plain [SemanticsTag]s they add zero runtime overhead and
 /// are automatically preserved across semantics merges.
-class SeoSemanticsTags {
-  SeoSemanticsTags._();
-
-  /// Marks a [SemanticsNode] that represents raw HTML content.
-  static final SemanticsTag html = SemanticsTag('seo_html');
-
-  /// Marks a [SemanticsNode] whose [SemanticsConfiguration.value] contains the
-  /// concatenated `<head>` tags.
-  static final SemanticsTag head = SemanticsTag('seo_head');
+extension type const SeoSemanticsTags(String _) implements String {
+  static const SemanticsTag html = SemanticsTag('seo_html');
+  static const SemanticsTag head = SemanticsTag('seo_head');
 }
 
 /// A tiny proxy widget that injects a given [SemanticsTag] and an optional
@@ -82,7 +74,7 @@ class RenderSeoTaggedSemantics extends RenderProxyBox {
     // `SemanticsConfiguration` does not expose a writable `tags` field for
     // the current node, but we can tag all descendant nodes, including the
     // one created for this render object, by using `addTagForChildren`.\
-    config.identifier = _tag.toString() + Random().nextInt(1000000).toString();
+    config.identifier = '$_tag ${Uuid().v1()}';
 
     // Store the payload in the `value` field so it can be recovered later.
     config.value = _data.encode();
