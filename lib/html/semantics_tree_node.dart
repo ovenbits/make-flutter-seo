@@ -1,19 +1,4 @@
-// 🐦 Flutter imports:
-import 'package:flutter/material.dart';
-
-// 🌎 Project imports:
-import 'package:make_flutter_seo/src/seo_html.dart';
-import 'package:make_flutter_seo/src/seo_tag.dart';
-
-abstract class SeoTree {
-  const SeoTree();
-
-  Stream<void> changes();
-
-  SeoTreeNode? traverse();
-
-  Widget process(SeoTag tag, Widget child);
-}
+import 'package:make_flutter_seo/make_flutter_seo.dart';
 
 mixin SeoTreeNode {
   bool get seo;

@@ -22,7 +22,6 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return SeoController(
       enabled: true,
-      tree: SemanticsTree(),
       child: MaterialApp.router(
         theme: Theme.of(context).copyWith(
           scaffoldBackgroundColor: const Color(0xFFEEEEEE),

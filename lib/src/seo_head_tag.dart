@@ -9,10 +9,3 @@ sealed class SeoHeadTag with _$SeoHeadTag implements SeoTag {
 
   factory SeoHeadTag.fromJson(Map<String, dynamic> json) => _$SeoHeadTagFromJson(json);
 }
-
-//TODO: Remove this class
-class HeadTags implements SeoTag {
-  final List<SeoHeadTag> tags;
-
-  const HeadTags({required this.tags});
-}

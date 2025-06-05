@@ -1,38 +1,27 @@
 import 'dart:async';
 import 'dart:js_interop';
 import 'package:make_flutter_seo/html/node_list_extension.dart';
+import 'package:make_flutter_seo/html/semantics_tree.dart';
 import 'package:web/web.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:make_flutter_seo/src/seo_html.dart';
-import 'package:make_flutter_seo/src/seo_tag.dart';
-import 'package:make_flutter_seo/src/seo_tree.dart';
 
 class SeoController extends StatefulWidget {
   final bool enabled;
-
-  final SeoTree tree;
   final Widget child;
 
-  const SeoController({super.key, this.enabled = true, required this.tree, required this.child});
+  const SeoController({super.key, this.enabled = true, required this.child});
 
   @override
   State<SeoController> createState() => _SeoControllerState();
-
-  static Widget process({required BuildContext context, required SeoTag tag, required Widget child}) {
-    final tree = context.dependOnInheritedWidgetOfExactType<_InheritedSeoTreeWidget>()?.tree;
-
-    if (tree == null) {
-      throw Exception('SeoController not found');
-    }
-
-    return tree.process(tag, child);
-  }
 }
 
 class _SeoControllerState extends State<SeoController> {
+  final _tree = SemanticsTree();
+
   StreamSubscription? _subscription;
   int? _headHash;
   int? _bodyHash;
@@ -57,7 +46,7 @@ class _SeoControllerState extends State<SeoController> {
     _subscription = null;
 
     if (widget.enabled) {
-      _subscription = widget.tree.changes().debounceTime(const Duration(milliseconds: 250)).listen((_) => _update());
+      _subscription = _tree.changes().debounceTime(const Duration(milliseconds: 250)).listen((_) => _update());
     }
   }
 
@@ -69,7 +58,7 @@ class _SeoControllerState extends State<SeoController> {
       if (!mounted) return;
     }
 
-    final html = widget.tree.traverse()?.toHtml();
+    final html = _tree.traverse()?.toHtml();
     if (html != null) {
       _updateHead(html);
       _updateBody(html);
@@ -104,7 +93,7 @@ class _SeoControllerState extends State<SeoController> {
 
   @override
   Widget build(BuildContext context) {
-    return _InheritedSeoTreeWidget(tree: widget.tree, child: widget.child);
+    return widget.child;
   }
 
   @override
@@ -113,13 +102,4 @@ class _SeoControllerState extends State<SeoController> {
     _subscription = null;
     super.dispose();
   }
-}
-
-class _InheritedSeoTreeWidget extends InheritedWidget {
-  final SeoTree tree;
-
-  const _InheritedSeoTreeWidget({required this.tree, required super.child});
-
-  @override
-  bool updateShouldNotify(_InheritedSeoTreeWidget old) => true;
 }

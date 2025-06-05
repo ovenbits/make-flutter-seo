@@ -5,17 +5,16 @@ import 'dart:convert';
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:make_flutter_seo/html/semantics_tree_node.dart';
 
 // 🌎 Project imports:
-import 'package:make_flutter_seo/html/seo_semantics.dart';
+import 'package:make_flutter_seo/html/seo_widgets_factory.dart';
 import 'package:make_flutter_seo/src/seo_html.dart';
 import 'package:make_flutter_seo/src/seo_tag.dart';
-import 'package:make_flutter_seo/src/seo_tree.dart';
 
-final class SemanticsTree extends SeoTree {
+final class SemanticsTree {
   StreamController<void>? controller;
 
-  @override
   Stream<void> changes() {
     SemanticsHandle? handle;
 
@@ -45,7 +44,6 @@ final class SemanticsTree extends SeoTree {
     controller?.add(null);
   }
 
-  @override
   SeoTreeNode? traverse() {
     // ignore: deprecated_member_use
     final node = WidgetsBinding.instance.pipelineOwner.semanticsOwner?.rootSemanticsNode;
@@ -69,28 +67,6 @@ final class SemanticsTree extends SeoTree {
       parent: node,
       children: children.map(_traverse).expand((node) => node.seo ? [node] : node.children).toList(),
     );
-  }
-
-  @override
-  Widget process(SeoTag tag, Widget child) {
-    if (tag is TextTag) {
-      return Semantics(label: tag.text, excludeSemantics: true, container: true, child: child);
-    } else if (tag is ImageTag) {
-      return Semantics(label: tag.alt, value: tag.src, image: true, excludeSemantics: true, container: true, child: child);
-    } else if (tag is LinkTag) {
-      return Semantics(label: tag.anchor, value: tag.href, link: true, container: true, child: child);
-    } else if (tag is HeadTags) {
-      return SeoTaggedSemantics(
-        tag: SeoSemanticsTags.head,
-        data: tag.tags.first, //.join('\n'),
-        child: child,
-      );
-    }
-    //else if (tag is HtmlTag) {
-    //  return SeoTaggedSemantics(tag: SeoSemanticsTags.html, data: tag.html, child: child);
-    //}
-
-    return child;
   }
 }
 
@@ -116,11 +92,11 @@ class _Node with SeoTreeNode {
   }
 
   bool get _html {
-    return parent.tags?.contains(SeoSemanticsTags.html) ?? false;
+    return parent.identifier.contains(SeoSemanticsTag.html.name);
   }
 
   bool get _head {
-    return parent.identifier.contains(SeoSemanticsTags.head.toString());
+    return parent.identifier.contains(SeoSemanticsTag.head.name);
   }
 
   @override
@@ -135,33 +111,13 @@ class _Node with SeoTreeNode {
     } else if (_text) {
       return 'text: $label';
     } else if (_html) {
-      return 'html';
+      return 'html: $value';
     } else if (_head) {
-      return 'head';
+      return 'head: $value';
     } else {
       return 'div: ${children.length}';
     }
   }
-
-  // @override
-  // String toString() {
-  //   final widget = parent?.widget;
-  //   final tag = widget is Seo ? widget.tag : null;
-
-  //   if (tag is TextTag) {
-  //     return 'text: ${tag.text}';
-  //   } else if (tag is ImageTag) {
-  //     return 'image: ${tag.alt} | url: ${tag.src}';
-  //   } else if (tag is LinkTag) {
-  //     return 'link: ${tag.anchor} | url: ${tag.href} | rel: ${tag.rel}';
-  //   } else if (tag is HtmlTag) {
-  //     return 'html: ${tag.html}';
-  //   } else if (tag is HeadTags) {
-  //     return 'head: ${tag.tags.length}';
-  //   } else {
-  //     return 'div';
-  //   }
-  // }
 
   @override
   SeoHtml toHtml() {
@@ -186,7 +142,10 @@ class _Node with SeoTreeNode {
         body: textTag(text: parent.label, style: TextTagStyle.p, content: html.body),
       );
     } else if (_head) {
-      return html.copyWith(head: html.head + headTag(tag: SeoHeadTag.fromJson(jsonDecode(parent.value))));
+      final List<SeoHeadTag> tags = (jsonDecode(parent.value) as List)
+          .map((json) => SeoHeadTag.fromJson(json as Map<String, dynamic>))
+          .toList();
+      return html.copyWith(head: html.head + tags.map((tag) => headTag(tag: tag)).join('\n'));
     } else if (_html) {
       return html.copyWith(
         body: htmlTag(html: parent.value, content: html.body),
