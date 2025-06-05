@@ -59,28 +59,29 @@ mixin SeoTreeNode {
   }
 
   String headTag({required SeoHeadTag tag}) {
-    if (tag is SeoMetaTag) {
-      final attributes = {
-        'name': tag.name,
-        'http-equiv': tag.httpEquiv,
-        'content': tag.content,
-      }.entries.where((entry) => entry.value != null).map((entry) => '${entry.key}="${entry.value}"').join(' ');
+    return switch (tag) {
+      SeoMetaTag(:final name, :final httpEquiv, :final content) => () {
+        final attributes = {
+          'name': name,
+          'http-equiv': httpEquiv,
+          'content': content,
+        }.entries.where((entry) => entry.value != null).map((entry) => '${entry.key}="${entry.value}"').join(' ');
 
-      return '<meta $attributes flt-seo>';
-    } else if (tag is SeoLinkTag) {
-      final attributes = {
-        'title': tag.title,
-        'rel': tag.rel,
-        'type': tag.type,
-        'hreflang': tag.hreflang,
-        'href': tag.href,
-        'media': tag.media,
-      }.entries.where((entry) => entry.value != null).map((entry) => '${entry.key}="${entry.value}"').join(' ');
+        return '<meta $attributes flt-seo>';
+      }(),
+      SeoLinkTag(:final title, :final rel, :final type, :final hreflang, :final href, :final media) => () {
+        final attributes = {
+          'title': title,
+          'rel': rel,
+          'type': type,
+          'hreflang': hreflang,
+          'href': href,
+          'media': media,
+        }.entries.where((entry) => entry.value != null).map((entry) => '${entry.key}="${entry.value}"').join(' ');
 
-      return '<link $attributes flt-seo>';
-    }
-
-    throw UnimplementedError('unsupported tag: $tag');
+        return '<link $attributes flt-seo>';
+      }(),
+    };
   }
 
   String divTag({required String content}) {

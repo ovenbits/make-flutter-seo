@@ -46,13 +46,13 @@ class _AppHeadState extends State<AppHead> {
       },
       child: Seo.head(
         tags: [
-          SeoMetaTag(name: 'title', content: widget.title),
-          SeoMetaTag(name: 'description', content: widget.description),
+          SeoHeadTag.meta(name: 'title', content: widget.title),
+          SeoHeadTag.meta(name: 'description', content: widget.description),
           if (widget.author != null) ...[
-            SeoMetaTag(name: 'author', content: widget.author),
+            SeoHeadTag.meta(name: 'author', content: widget.author),
           ],
           if (widget.canonicalUrl != null) ...[
-            SeoLinkTag(
+            SeoHeadTag.link(
               rel: 'canonical',
               href: widget.canonicalUrl!,
             ),

@@ -1,5 +1,6 @@
 // 🎯 Dart imports:
 import 'dart:async';
+import 'dart:convert';
 
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
@@ -185,7 +186,7 @@ class _Node with SeoTreeNode {
         body: textTag(text: parent.label, style: TextTagStyle.p, content: html.body),
       );
     } else if (_head) {
-      return html.copyWith(head: html.head + headTag(tag: SeoHeadTag.decode(parent.value)));
+      return html.copyWith(head: html.head + headTag(tag: SeoHeadTag.fromJson(jsonDecode(parent.value))));
     } else if (_html) {
       return html.copyWith(
         body: htmlTag(html: parent.value, content: html.body),

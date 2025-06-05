@@ -1,3 +1,6 @@
+// 🎯 Dart imports:
+import 'dart:convert';
+
 // 🐦 Flutter imports:
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -77,7 +80,7 @@ class RenderSeoTaggedSemantics extends RenderProxyBox {
     config.identifier = '$_tag ${Uuid().v1()}';
 
     // Store the payload in the `value` field so it can be recovered later.
-    config.value = _data.encode();
+    config.value = jsonEncode(_data.toJson());
     config.textDirection = TextDirection.ltr;
   }
 }
