@@ -1,4 +1,6 @@
 // 🐦 Flutter imports:
+import 'dart:convert';
+
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:make_flutter_seo/make_flutter_seo.dart';
@@ -15,9 +17,11 @@ import 'package:uuid/uuid.dart';
 /// Because they are plain [SemanticsTag]s they add zero runtime overhead and
 /// are automatically preserved across semantics merges.
 abstract interface class SeoSemanticsTag {
-  static const SemanticsTag html = SemanticsTag('seo_html');
-  static const SemanticsTag head = SemanticsTag('seo_head');
-  static const SemanticsTag styledText = SemanticsTag('seo_styled_text');
+  static const SemanticsTag seoHtml = SemanticsTag('seo_html');
+  static const SemanticsTag seoHead = SemanticsTag('seo_head');
+  static const SemanticsTag seoText = SemanticsTag('seo_text');
+  static const SemanticsTag seoImage = SemanticsTag('seo_image');
+  static const SemanticsTag seoLink = SemanticsTag('seo_link');
 }
 
 final class SeoSemantics extends SingleChildRenderObjectWidget {
@@ -49,7 +53,7 @@ final class RenderSeoSemantics extends RenderProxyBox {
     config.isSemanticBoundary = true;
     config.isHidden = true;
     config.identifier = '$semanticsTag ${Uuid().v1()}';
-    config.value = seoTag.toJson();
+    config.value = jsonEncode(seoTag.toJson());
     config.textDirection = TextDirection.ltr;
   }
 }
