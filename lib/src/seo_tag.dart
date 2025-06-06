@@ -6,4 +6,6 @@ part 'seo_head_tag.dart';
 part 'seo_tag.freezed.dart';
 part 'seo_tag.g.dart';
 
-sealed class SeoTag {}
+sealed class SeoTag {
+  String toJson();
+}

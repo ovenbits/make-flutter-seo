@@ -1,11 +1,17 @@
 part of 'seo_tag.dart';
 
-@freezed
-sealed class SeoHeadTag with _$SeoHeadTag implements SeoTag {
-  const factory SeoHeadTag.meta({String? name, String? httpEquiv, String? content}) = SeoMetaTag;
+final class HeaderTags implements SeoTag {
+  final List<HeaderTag> tags;
 
-  const factory SeoHeadTag.link({String? title, String? rel, String? type, String? hreflang, String? href, String? media}) =
+  const HeaderTags({required this.tags});
+}
+
+@freezed
+sealed class HeaderTag with _$SeoHeadTag {
+  const factory HeaderTag.meta({String? name, String? httpEquiv, String? content}) = SeoMetaTag;
+
+  const factory HeaderTag.link({String? title, String? rel, String? type, String? hreflang, String? href, String? media}) =
       SeoLinkTag;
 
-  factory SeoHeadTag.fromJson(Map<String, dynamic> json) => _$SeoHeadTagFromJson(json);
+  factory HeaderTag.fromJson(Map<String, dynamic> json) => _$SeoHeadTagFromJson(json);
 }

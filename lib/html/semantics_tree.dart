@@ -6,9 +6,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:make_flutter_seo/html/semantics_tree_node.dart';
+import 'package:make_flutter_seo/html/seo_semantics.dart';
 
 // 🌎 Project imports:
-import 'package:make_flutter_seo/html/seo_widgets_factory.dart';
 import 'package:make_flutter_seo/src/seo_html.dart';
 import 'package:make_flutter_seo/src/seo_tag.dart';
 
@@ -142,8 +142,8 @@ class _Node with SeoTreeNode {
         body: textTag(text: parent.label, style: TextTagStyle.p, content: html.body),
       );
     } else if (_head) {
-      final List<SeoHeadTag> tags = (jsonDecode(parent.value) as List)
-          .map((json) => SeoHeadTag.fromJson(json as Map<String, dynamic>))
+      final List<HeaderTag> tags = (jsonDecode(parent.value) as List)
+          .map((json) => HeaderTag.fromJson(json as Map<String, dynamic>))
           .toList();
       return html.copyWith(head: html.head + tags.map((tag) => headTag(tag: tag)).join('\n'));
     } else if (_html) {

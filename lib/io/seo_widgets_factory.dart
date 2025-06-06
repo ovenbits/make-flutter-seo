@@ -13,5 +13,5 @@ abstract class Seo {
 
   static Widget html({required String html, required Widget child}) => child;
 
-  static Widget head({required List<SeoHeadTag> tags, required Widget child}) => child;
+  static Widget head({required List<HeaderTag> tags, required Widget child}) => child;
 }

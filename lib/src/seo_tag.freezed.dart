@@ -12,7 +12,7 @@ part of 'seo_tag.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
-SeoHeadTag _$SeoHeadTagFromJson(
+HeaderTag _$SeoHeadTagFromJson(
   Map<String, dynamic> json
 ) {
         switch (json['runtimeType']) {
@@ -47,7 +47,7 @@ mixin _$SeoHeadTag {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SeoHeadTag);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HeaderTag);
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -64,14 +64,14 @@ String toString() {
 
 /// @nodoc
 class $SeoHeadTagCopyWith<$Res>  {
-$SeoHeadTagCopyWith(SeoHeadTag _, $Res Function(SeoHeadTag) __);
+$SeoHeadTagCopyWith(HeaderTag _, $Res Function(HeaderTag) __);
 }
 
 
 /// @nodoc
 @JsonSerializable()
 
-class SeoMetaTag implements SeoHeadTag {
+class SeoMetaTag implements HeaderTag {
   const SeoMetaTag({this.name, this.httpEquiv, this.content, final  String? $type}): $type = $type ?? 'meta';
   factory SeoMetaTag.fromJson(Map<String, dynamic> json) => _$SeoMetaTagFromJson(json);
 
@@ -148,7 +148,7 @@ as String?,
 /// @nodoc
 @JsonSerializable()
 
-class SeoLinkTag implements SeoHeadTag {
+class SeoLinkTag implements HeaderTag {
   const SeoLinkTag({this.title, this.rel, this.type, this.hreflang, this.href, this.media, final  String? $type}): $type = $type ?? 'link';
   factory SeoLinkTag.fromJson(Map<String, dynamic> json) => _$SeoLinkTagFromJson(json);
 

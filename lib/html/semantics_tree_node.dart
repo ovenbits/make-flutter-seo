@@ -43,7 +43,7 @@ mixin SeoTreeNode {
     return '$html$content';
   }
 
-  String headTag({required SeoHeadTag tag}) {
+  String headTag({required HeaderTag tag}) {
     return switch (tag) {
       SeoMetaTag(:final name, :final httpEquiv, :final content) => () {
         final attributes = {
