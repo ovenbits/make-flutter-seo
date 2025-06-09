@@ -45,11 +45,12 @@ mixin SeoTreeNode {
 
   String headTag({required HeaderTag tag}) {
     return switch (tag) {
-      SeoMetaTag(:final name, :final httpEquiv, :final content) => () {
+      SeoMetaTag(:final name, :final httpEquiv, :final content, :final property) => () {
         final attributes = {
           'name': name,
           'http-equiv': httpEquiv,
           'content': content,
+          'property': property,
         }.entries.where((entry) => entry.value != null).map((entry) => '${entry.key}="${entry.value}"').join(' ');
 
         return '<meta $attributes flt-seo>';
