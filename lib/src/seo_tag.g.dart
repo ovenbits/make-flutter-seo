@@ -76,18 +76,18 @@ Map<String, dynamic> _$HeaderTagsToJson(HeaderTags instance) =>
 
 SeoMetaTag _$SeoMetaTagFromJson(Map<String, dynamic> json) => SeoMetaTag(
   name: json['name'] as String?,
+  property: json['property'] as String?,
   httpEquiv: json['httpEquiv'] as String?,
   content: json['content'] as String?,
-  property: json['property'] as String?,
   $type: json['runtimeType'] as String?,
 );
 
 Map<String, dynamic> _$SeoMetaTagToJson(SeoMetaTag instance) =>
     <String, dynamic>{
       'name': instance.name,
+      'property': instance.property,
       'httpEquiv': instance.httpEquiv,
       'content': instance.content,
-      'property': instance.property,
       'runtimeType': instance.$type,
     };
 

@@ -519,13 +519,13 @@ $HeaderTagCopyWith(HeaderTag _, $Res Function(HeaderTag) __);
 @JsonSerializable()
 
 class SeoMetaTag implements HeaderTag {
-  const SeoMetaTag({this.name, this.httpEquiv, this.content, this.property, final  String? $type}): $type = $type ?? 'meta';
+  const SeoMetaTag({this.name, this.property, this.httpEquiv, this.content, final  String? $type}): $type = $type ?? 'meta';
   factory SeoMetaTag.fromJson(Map<String, dynamic> json) => _$SeoMetaTagFromJson(json);
 
  final  String? name;
+ final  String? property;
  final  String? httpEquiv;
  final  String? content;
- final  String? property;
 
 @JsonKey(name: 'runtimeType')
 final String $type;
@@ -544,16 +544,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SeoMetaTag&&(identical(other.name, name) || other.name == name)&&(identical(other.httpEquiv, httpEquiv) || other.httpEquiv == httpEquiv)&&(identical(other.content, content) || other.content == content)&&(identical(other.property, property) || other.property == property));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SeoMetaTag&&(identical(other.name, name) || other.name == name)&&(identical(other.property, property) || other.property == property)&&(identical(other.httpEquiv, httpEquiv) || other.httpEquiv == httpEquiv)&&(identical(other.content, content) || other.content == content));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,httpEquiv,content,property);
+int get hashCode => Object.hash(runtimeType,name,property,httpEquiv,content);
 
 @override
 String toString() {
-  return 'HeaderTag.meta(name: $name, httpEquiv: $httpEquiv, content: $content, property: $property)';
+  return 'HeaderTag.meta(name: $name, property: $property, httpEquiv: $httpEquiv, content: $content)';
 }
 
 
@@ -564,7 +564,7 @@ abstract mixin class $SeoMetaTagCopyWith<$Res> implements $HeaderTagCopyWith<$Re
   factory $SeoMetaTagCopyWith(SeoMetaTag value, $Res Function(SeoMetaTag) _then) = _$SeoMetaTagCopyWithImpl;
 @useResult
 $Res call({
- String? name, String? httpEquiv, String? content, String? property
+ String? name, String? property, String? httpEquiv, String? content
 });
 
 
@@ -581,12 +581,12 @@ class _$SeoMetaTagCopyWithImpl<$Res>
 
 /// Create a copy of HeaderTag
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? httpEquiv = freezed,Object? content = freezed,Object? property = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? property = freezed,Object? httpEquiv = freezed,Object? content = freezed,}) {
   return _then(SeoMetaTag(
 name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,property: freezed == property ? _self.property : property // ignore: cast_nullable_to_non_nullable
 as String?,httpEquiv: freezed == httpEquiv ? _self.httpEquiv : httpEquiv // ignore: cast_nullable_to_non_nullable
 as String?,content: freezed == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
-as String?,property: freezed == property ? _self.property : property // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

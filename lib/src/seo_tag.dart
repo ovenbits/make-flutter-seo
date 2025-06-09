@@ -25,7 +25,7 @@ sealed class SeoTag with _$SeoTag {
 
 @freezed
 sealed class HeaderTag with _$HeaderTag {
-  const factory HeaderTag.meta({String? name, String? httpEquiv, String? content, String? property}) = SeoMetaTag;
+  const factory HeaderTag.meta({String? name, String? property, String? httpEquiv, String? content}) = SeoMetaTag;
 
   const factory HeaderTag.link({String? title, String? rel, String? type, String? hreflang, String? href, String? media}) =
       SeoLinkTag;
