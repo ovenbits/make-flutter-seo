@@ -177,6 +177,10 @@ cd example && flutter run -d chrome
 - ✅ **Windows**: Basic semantics support
 - ✅ **Linux**: Basic semantics support
 
+## ⚠️ Security Considerations
+
+Avoid using semantics on fields that contain sensitive user data like credit card information or other private details. Use `ExcludeSemantics` to prevent this data from being exposed to the accessibility tree.
+
 ## 🤝 Contributing
 
 This is an internal package for the Make organization. For contributions:
