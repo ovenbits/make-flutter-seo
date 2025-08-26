@@ -1,0 +1,137 @@
+# Flutter/Dart specific
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+coverage/
+
+# Generated files
+*.g.dart
+*.freezed.dart
+*.gr.dart
+*.config.dart
+*.mocks.dart
+*.reflectable.dart
+
+# Build artifacts
+**/build/
+**/Build/
+**/DerivedData/
+*.app
+*.ipa
+*.apk
+*.aab
+
+# Android specific
+android/app/debug/
+android/app/profile/
+android/app/release/
+android/.gradle/
+android/captures/
+android/gradlew
+android/gradlew.bat
+android/local.properties
+android/app/google-services.json
+android/key.properties
+android/app/upload-keystore.jks
+android/app/release-keystore.jks
+
+# iOS specific
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+ios/Pods/
+ios/Runner.xcworkspace/xcuserdata/
+ios/Runner.xcodeproj/xcuserdata/
+ios/Runner.xcodeproj/project.xcworkspace/xcuserdata/
+ios/Flutter/ephemeral/
+ios/ServiceDefinitions.json
+ios/Runner/GeneratedPluginRegistrant.*
+
+# macOS specific
+macos/Flutter/ephemeral/
+macos/Pods/
+macos/Runner.xcworkspace/xcuserdata/
+macos/Runner.xcodeproj/xcuserdata/
+
+# Windows specific
+windows/flutter/ephemeral/
+
+# Linux specific
+linux/flutter/ephemeral/
+
+# Web specific
+web/dist/
+web/build/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencies
+node_modules/
+jspm_packages/
+
+# Testing
+test_driver/
+integration_test/reports/
+.nyc_output/
+
+# Miscellaneous
+*.class
+*.lock
+*.tmp
+*.temp
+**/doc/api/
+.flutter-devtools/
+.fvm/
+
+# Firebase
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Package manager lock files (optional - you may want to track these)
+pubspec.lock
+package-lock.json
+yarn.lock
+
+# Documentation build
+doc/
+docs/build/
+
+# Backup files
+*.bak
+*.backup
+
+# Translation files (if using internationalization)
+**/l10n/
+**/intl/ 
