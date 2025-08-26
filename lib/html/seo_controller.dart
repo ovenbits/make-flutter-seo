@@ -46,7 +46,7 @@ class _SeoControllerState extends State<SeoController> {
     _subscription = null;
 
     if (widget.enabled) {
-      _subscription = _tree.changes().debounceTime(const Duration(milliseconds: 500)).listen((_) => _update());
+      _subscription = _tree.changes().debounceTime(const Duration(milliseconds: 1500)).listen((_) => _update());
     }
   }
 
