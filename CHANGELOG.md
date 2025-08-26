@@ -1,3 +1,34 @@
+## 0.0.2
+
+### 🔧 Maintenance
+
+* Updated SDK constraints and dependencies to align with latest stable tooling
+  - Dart: ">=3.9.0 <4.0.0"
+  - Flutter: ">=3.35.1 <4.0.0"
+  - Bumped package and dev dependencies to compatible versions
+
+### 🎯 Performance
+
+* Increased SEO DOM rebuild debounce to 500ms (from 250ms) to reduce churn
+* Retains hash-based short-circuiting to avoid unnecessary DOM mutations
+
+### 🧩 Web behavior
+
+* SEO body container now renders behind app content with `z-index:-1`
+  - Inserted at the start of `<body>` and marked `aria-hidden="true"` and `role="presentation"`
+  - `pointer-events:none` and `overflow:hidden` to ensure zero interaction/visual impact
+* Continues to cleanly replace prior SEO nodes via the `[flt-seo]` selector
+
+### 🏗️ Semantics
+
+* Adopted newer Flutter semantics APIs (3.35)
+  - Use `flagsCollection.isLink`/`isImage` for detection
+  - Populate `SemanticsConfiguration.identifier` for SEO tags while keeping nodes hidden from a11y
+
+### ⚠️ Breaking
+
+* Minimum Flutter version is now 3.35.1 (Dart 3.9). Pin to 0.0.1 for older SDKs.
+
 ## 0.0.1
 
 ### ✨ Features
