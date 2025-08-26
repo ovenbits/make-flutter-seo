@@ -1,7 +1,8 @@
 name: seo_example
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: ">=3.9.0<4.0.0"
+  flutter: ^3.35.1
 
 dependencies:
   flutter:
@@ -9,15 +10,15 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   faker: ^2.2.0
-  auto_route: ^10.0.1
+  auto_route: ^10.1.2
   visibility_detector: ^0.4.0+2
   make_flutter_seo:
     path: ../
 
 dev_dependencies:
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
   auto_route_generator: ^10.0.1
-  build_runner: ^2.4.13
+  build_runner: ^2.7.0
   import_sorter: ^4.6.0
 
 import_sorter:

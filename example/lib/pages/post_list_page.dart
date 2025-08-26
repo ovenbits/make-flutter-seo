@@ -27,7 +27,7 @@ class PostListPage extends StatelessWidget {
         child: ListView.separated(
           itemCount: 64,
           itemBuilder: (_, id) => _Card(post: Post(id)),
-          separatorBuilder: (_, __) => const SizedBox(height: 16.0),
+          separatorBuilder: (_, _) => const SizedBox(height: 16.0),
         ),
       ),
     );
@@ -37,9 +37,7 @@ class PostListPage extends StatelessWidget {
 class _Card extends StatelessWidget {
   final Post post;
 
-  const _Card({
-    required this.post,
-  });
+  const _Card({required this.post});
 
   @override
   Widget build(BuildContext context) {
@@ -60,10 +58,7 @@ class _Card extends StatelessWidget {
               children: [
                 SizedBox.square(
                   dimension: 64.0,
-                  child: AppImage(
-                    alt: post.title,
-                    src: post.imageSmall,
-                  ),
+                  child: AppImage(alt: post.title, src: post.imageSmall),
                 ),
                 Expanded(
                   child: Padding(
@@ -71,25 +66,15 @@ class _Card extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        AppText(
-                          text: post.title,
-                          tagStyle: TextTagStyle.h6,
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
+                        AppText(text: post.title, tagStyle: TextTagStyle.h6, style: Theme.of(context).textTheme.titleLarge),
                         Padding(
                           padding: const EdgeInsets.only(top: 4.0),
                           child: Row(
                             children: [
-                              AppText(
-                                text: post.author,
-                                style: Theme.of(context).textTheme.bodySmall,
-                              ),
+                              AppText(text: post.author, style: Theme.of(context).textTheme.bodySmall),
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0),
-                                child: AppText(
-                                  text: post.date,
-                                  style: Theme.of(context).textTheme.bodySmall,
-                                ),
+                                child: AppText(text: post.date, style: Theme.of(context).textTheme.bodySmall),
                               ),
                             ],
                           ),
@@ -97,7 +82,7 @@ class _Card extends StatelessWidget {
                       ],
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),

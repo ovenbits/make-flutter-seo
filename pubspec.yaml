@@ -1,30 +1,30 @@
 name: make_flutter_seo
 description: "Internal Make Flutter SEO & Accessibility Package"
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/ovenbits/make-flutter-seo.git
 
 environment:
-  sdk: ^3.8.1
-  flutter: ">=1.17.0"
+  sdk: ">=3.9.0<4.0.0"
+  flutter: ^3.35.1
 
 dependencies:
   flutter:
     sdk: flutter
 
-  rxdart: ">=0.27.5 <0.29.0"
-  web: ^1.1.0
-  uuid: ^4.4.2
-  freezed_annotation: ^3.0.0
+  rxdart: ^0.28.0
+  web: ^1.1.1
+  uuid: ^4.5.1
+  freezed_annotation: ^3.1.0
   json_annotation: ^4.9.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
   import_sorter: ^4.6.0
-  build_runner: ^2.4.15
-  freezed: ^3.0.6
-  json_serializable: ^6.9.5
+  build_runner: ^2.7.0
+  freezed: ^3.2.0
+  json_serializable: ^6.10.0
 
 import_sorter:
   emojis: true

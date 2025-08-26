@@ -84,11 +84,11 @@ class _Node with SeoTreeNode {
   }
 
   bool get _link {
-    return parent.hasFlag(SemanticsFlag.isLink) && parent.value.isNotEmpty;
+    return parent.flagsCollection.isLink && parent.value.isNotEmpty;
   }
 
   bool get _image {
-    return parent.hasFlag(SemanticsFlag.isImage) && parent.value.isNotEmpty;
+    return parent.flagsCollection.isImage && parent.value.isNotEmpty;
   }
 
   bool get _seoText {

@@ -46,7 +46,7 @@ class _SeoControllerState extends State<SeoController> {
     _subscription = null;
 
     if (widget.enabled) {
-      _subscription = _tree.changes().debounceTime(const Duration(milliseconds: 250)).listen((_) => _update());
+      _subscription = _tree.changes().debounceTime(const Duration(milliseconds: 500)).listen((_) => _update());
     }
   }
 
@@ -88,7 +88,11 @@ class _SeoControllerState extends State<SeoController> {
 
     body.querySelectorAll('[flt-seo]').toList().nonNulls.forEach((node) => body.removeChild(node));
 
-    body.insertAdjacentHTML('afterBegin', '<div flt-seo>${html.body}</div>'.toJS);
+    body.insertAdjacentHTML(
+      'afterBegin',
+      '<div flt-seo aria-hidden="true" role="presentation" style="position:absolute;inset:0;pointer-events:none;z-index:-1;overflow:hidden">${html.body}</div>'
+          .toJS,
+    );
   }
 
   @override

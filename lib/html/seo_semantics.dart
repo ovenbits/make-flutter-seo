@@ -52,6 +52,9 @@ final class RenderSeoSemantics extends RenderProxyBox {
     // still available while traversing the semantics tree.
     config.isSemanticBoundary = true;
     config.isHidden = true;
+    config.isBlockingUserActions = false;
+    config.isSelected = false;
+    config.isFocusable = false;
     config.identifier = '$semanticsTag ${Uuid().v1()}';
     config.value = jsonEncode(seoTag.toJson());
     config.textDirection = TextDirection.ltr;
